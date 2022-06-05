@@ -39,13 +39,42 @@
 // You will remember that some types in Rust are Copy, some are Clone, some are Display, some are Debug, and so on. 
 // With Debug, we can print with {:?}. So now you can see that we have a problem if we want to print T
 
-use std::fmt::Debug; // Debug is located at std::fmt::Debug. So now we can just write 'Debug'.
+// use std::fmt::Debug; // Debug is located at std::fmt::Debug. So now we can just write 'Debug'.
 
-fn print_number<T: Debug>(number: T) { // <T: Debug> is the important part
-    println!("Here is your number: {:?}", number);
+// fn print_number<T: Debug>(number: T) { // <T: Debug> is the important part
+//     println!("Here is your number: {:?}", number);
+// }
+
+// fn main() {
+//     print_number(5);
+//     print_number(5.75);
+// }
+// ---------------------------------------------------------------------------------------------------------------
+
+use std::fmt::{Display, Debug};
+// This used to compare like greater than less than
+use std::cmp::PartialOrd;
+
+#[derive(Debug)]
+struct Animal {
+    name: String,
+    age: u8 
+}
+
+fn compare_and_display<T:Display, U:Display + PartialOrd, MyGenericType: Debug>(statement: T, num_1: U, num_2: U, animal: MyGenericType){
+    println!("{}! is {} greater than {}? {}",
+    statement,num_1,num_2 , num_1 > num_2
+    );
+    println!("By the way, I have an animal: {:?}", animal);
 }
 
 fn main() {
-    print_number(5);
-    print_number(5.75);
+    let cat = Animal {
+        name: "Charlie".to_string(),
+        age: 2
+    };
+
+    compare_and_display("Listen up!", 9, 8, cat);
 }
+
+
