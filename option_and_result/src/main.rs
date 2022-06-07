@@ -34,44 +34,105 @@
 // Some(value): a tuple struct that wraps a value with type T.
 
 // An integer division that doesn't `panic!`
-fn checked_division(dividend: i32, divisor: i32) -> Option<i32> {
-    if divisor == 0 {
-        // Failure is represented as the `None` variant
-        None
-    } else {
-        // Result is wrapped in a `Some` variant
-        Some(dividend / divisor)
-    }
-}
+// fn checked_division(dividend: i32, divisor: i32) -> Option<i32> {
+//     if divisor == 0 {
+//         // Failure is represented as the `None` variant
+//         None
+//     } else {
+//         // Result is wrapped in a `Some` variant
+//         Some(dividend / divisor)
+//     }
+// }
 
-// This function handles a division that may not succeed
-fn try_division(dividend: i32, divisor: i32) {
-    // `Option` values can be pattern matched, just like other enums
-    match checked_division(dividend, divisor) {
-        None => println!("{} / {} failed!", dividend, divisor),
-        Some(quotient) => {
-            println!("{} / {} = {}", dividend, divisor, quotient)
-        },
+// // This function handles a division that may not succeed
+// fn try_division(dividend: i32, divisor: i32) {
+//     // `Option` values can be pattern matched, just like other enums
+//     match checked_division(dividend, divisor) {
+//         None => println!("{} / {} failed!", dividend, divisor),
+//         Some(quotient) => {
+//             println!("{} / {} = {}", dividend, divisor, quotient)
+//         },
+//     }
+// }
+
+// fn main() {
+//     try_division(4, 2);
+//     try_division(1, 0);
+
+//     // Binding `None` to a variable needs to be type annotated
+//     let none: Option<i32> = None;
+//     let _equivalent_none = None::<i32>;
+
+//     let optional_float = Some(0f32);
+
+//     // Unwrapping a `Some` variant will extract the value wrapped.
+//     println!("{:?} unwraps to {:?}", optional_float, optional_float.unwrap());
+
+//     // Unwrapping a `None` variant will `panic!`
+//     println!("{:?} unwraps to {:?}", none, none.unwrap());
+// }
+// ----------------------------------------------------------------------------------------------------
+// RESULT
+//Result is similar to Option, but here is the difference:
+
+//Option is about Some or None (value or no value),
+//Result is about Ok or Err (okay result, or error result).
+//So Option is if you are thinking: "Maybe there will be something, and maybe there won't." 
+//But Result is if you are thinking: "Maybe it will fail.
+
+// enum Option<T> {
+//     None,
+//     Some(T),
+// }
+
+// enum Result<T, E> {
+//     Ok(T),
+//     Err(E),
+// }
+
+// fn main() {}
+
+//So Result has a value inside of Ok, and a value inside of Err. 
+//That is because errors usually contain information that describes the error.
+
+//Result<T, E> means you need to think of what you want to return for Ok, 
+//and what you want to return for Err
+
+// fn give_result(input: i32) -> Result<(), ()> {
+//     if input % 2 == 0 {
+//         return Ok(())
+//     } else {
+//         return Err(())
+//     }
+// }
+
+//Remember, the four methods to easily check are .is_some(), is_none(), is_ok(), and is_err().
+
+// fn main() {
+//     if give_result(5).is_ok() {
+//         println!("It's Ok guys")
+//     } else {
+//         println!("It's error guys")
+//     }
+
+// }
+// -----------------------------------------------------------------------------
+fn check_if_five(number: i32) -> Result<i32, String> {
+    match number {
+        5 => Ok(number),
+        _ => Err("Sorry, the number wasn't five.".to_string()), // This is our error message
     }
 }
 
 fn main() {
-    try_division(4, 2);
-    try_division(1, 0);
+    let mut result_vec = Vec::new(); // Create a new vec for the results
 
-    // Binding `None` to a variable needs to be type annotated
-    let none: Option<i32> = None;
-    let _equivalent_none = None::<i32>;
+    for number in 2..7 {
+        result_vec.push(check_if_five(number)); // push each result into the vec
+    }
 
-    let optional_float = Some(0f32);
-
-    // Unwrapping a `Some` variant will extract the value wrapped.
-    println!("{:?} unwraps to {:?}", optional_float, optional_float.unwrap());
-
-    // Unwrapping a `None` variant will `panic!`
-    println!("{:?} unwraps to {:?}", none, none.unwrap());
+    println!("{:?}", result_vec);
 }
-
 
 
 
