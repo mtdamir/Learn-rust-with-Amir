@@ -225,31 +225,39 @@
 
 // Another Example
 
-use std::collections::BinaryHeap;
+// use std::collections::BinaryHeap;
 
-fn show_reminder(input: &BinaryHeap<i32>) -> Vec<i32> {
-    let mut reminder_vec = vec![];
-    for number in input {
-        reminder_vec.push(*number);
-    }
-    reminder_vec
-}
+// fn show_reminder(input: &BinaryHeap<i32>) -> Vec<i32> {
+//     let mut reminder_vec = vec![];
+//     for number in input {
+//         reminder_vec.push(*number);
+//     }
+//     reminder_vec
+// }
 
-fn main() {
-    let many_number = vec![0,5,10,15,20,25,30]; //This numbers are in order
+// fn main() {
+//     let many_number = vec![0,5,10,15,20,25,30]; //This numbers are in order
 
-    let mut my_heap = BinaryHeap::new();
+//     let mut my_heap = BinaryHeap::new();
 
-    for number in many_number {
-        my_heap.push(number);
-    }
+//     for number in many_number {
+//         my_heap.push(number);
+//     }
 
-    while let Some(number) = my_heap.pop() {
-        println!("Poped off {}, The remaining numbers are: {:?}",
-            number,
-            show_reminder(&my_heap));
-    }
+//     while let Some(number) = my_heap.pop() {
+//         println!("Poped off {}, The remaining numbers are: {:?}",
+//             number,
+//             show_reminder(&my_heap));
+//     }
 
-}
+// }
+// -------------------------------------------------------------------------------------------
+// VecDeque
+
+//A VecDeque is a Vec that is good at popping items both off the front and the back. 
+//Rust has VecDeque because a Vec is great for popping off the back (the last item), but not so great off the front. 
+//When you use .pop() on a Vec, it just takes off the last item on the right and nothing else is moved. 
+//But if you take it off another part, all the items to the right are moved over one position to the left. 
+//You can see this in the description for .remove()
 
 
