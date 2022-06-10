@@ -30,3 +30,31 @@
 //     }
 // }
 // -------------------------------------------------------------------------------
+
+// PANIC
+
+// Rust has a panic! macro that you can use to make it panic. 
+// It is easy to use:
+
+
+// fn main() {
+//     panic!("Time to panic!");
+// }
+
+//The message "Time to panic!" displays when you run the program: thread 'main' panicked at 'Time to panic!'
+fn division(dividend: i32, divisor: i32) -> i32 {
+    if divisor == 0 {
+        // Division by zero triggers a panic
+        panic!("division by zero");
+    } else {
+        dividend / divisor
+    }
+}
+
+fn main () {
+    let _x =  Box::new(0i32);
+
+    division(3,0);
+
+    println!("This point won't be reashrd! ")
+}
