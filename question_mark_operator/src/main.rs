@@ -42,19 +42,36 @@
 // }
 
 //The message "Time to panic!" displays when you run the program: thread 'main' panicked at 'Time to panic!'
-fn division(dividend: i32, divisor: i32) -> i32 {
-    if divisor == 0 {
-        // Division by zero triggers a panic
-        panic!("division by zero");
-    } else {
-        dividend / divisor
-    }
-}
+// fn division(dividend: i32, divisor: i32) -> i32 {
+//     if divisor == 0 {
+//         // Division by zero triggers a panic
+//         panic!("division by zero");
+//     } else {
+//         dividend / divisor
+//     }
+// }
 
-fn main () {
-    let _x =  Box::new(0i32);
+// fn main () {
+//     let _x =  Box::new(0i32);
 
-    division(3,0);
+//     division(3,0);
 
-    println!("This point won't be reashrd! ")
+//     println!("This point won't be reashrd! ")
+// }
+// ------------------------------------------------------------------------------------
+
+// Assert!
+
+// assert!(): = must return true
+// assert_eq!() = two time inside must equal each other 
+// asser_ne!() = opposite
+
+// simple example
+
+fn main() {
+    let my_name = "Amir MTDs";
+
+    // assert!(my_name == "Amir MTD", "Name must be Amir MTD");
+    assert_eq!(my_name, "Amir MTD", "Name must be Amir MTD");
+    assert_ne!(my_name, "Adam", "Name cannot be Adam")
 }
