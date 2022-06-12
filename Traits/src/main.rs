@@ -7,31 +7,33 @@
 //The important thing to remember about traits is that they are about behaviour. 
 //To make a trait, write trait and then create some functions.
 
-struct Animal { // A simple struct - an Animal only has a name
-    name: String,
-}
+// struct Animal {
+//     name: String,
+// }
 
-trait Dog { // The dog trait gives some functionality
-    fn bark(&self) { // It can bark
-        println!("Woof woof!");
-    }
-    fn run(&self) { // and it can run
-        println!("The dog is running!");
-    }
-}
+// trait Dog {
+//     fn bark(&self); // bark() says it needs a &self and returns nothing
+//     fn run(&self); // run() says it needs a &self and returns nothing.
+//                    // So now we have to write them ourselves.
+// }
 
-impl Dog for Animal {
-    fn run(&self) {
-        println!("{} is running!", self.name);
-    }
-}
+// impl Dog for Animal {
+//     fn bark(&self) {
+//         println!("{}, stop barking!!", self.name);
+//     }
+//     fn run(&self) {
+//         println!("{} is running!", self.name);
+//     }
+// }
 
-fn main() {
-    let rover = Animal {
-        name: "Rover".to_string(),
-    };
+// fn main() {
+//     let rover = Animal {
+//         name: "Rover".to_string(),
+//     };
 
-    rover.bark(); // Now Animal can use bark()
-    rover.run();  // and it can use run()
-}
+//     rover.bark();
+//     rover.run();
+// }
+// reading and understanding trait implementation
+
 
