@@ -36,4 +36,23 @@
 // }
 // reading and understanding trait implementation
 
+#[derive(Clone, Copy)]
 
+struct Numbers {
+    number1: u8,
+    number2: u8,
+}
+
+fn take_number(number: Numbers){
+
+}
+
+fn main() {
+    let my_number = Numbers {
+        number1: 8,
+        number2: 12,
+    };
+
+    take_number(my_number);
+    take_number(my_number);
+}
