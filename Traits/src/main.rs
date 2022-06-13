@@ -36,23 +36,60 @@
 // }
 // reading and understanding trait implementation
 
-#[derive(Clone, Copy)]
+// #[derive(Clone, Copy)]
 
-struct Numbers {
-    number1: u8,
-    number2: u8,
+// struct Numbers {
+//     number1: u8,
+//     number2: u8,
+// }
+
+// fn take_number(number: Numbers){
+
+// }
+
+// fn main() {
+//     let my_number = Numbers {
+//         number1: 8,
+//         number2: 12,
+//     };
+
+//     take_number(my_number);
+//     take_number(my_number);
+// }
+// --------------------------------------------------------------------------------------------
+
+//So when you create a trait, you must think: "Which functions should I write? And which functions should the user write?" 
+//If you think the user should use the function the same way every time, then write out the function. 
+//If you think the user will use it differently, then just write the function signature.
+
+//So let's try implementing the Display trait for our struct. First we will make a simple struct:
+use std::fmt;
+
+struct Cat {
+    name: String,
+    age: u8,
 }
 
-fn take_number(number: Numbers){
+impl fmt::Display for Cat {
+  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+      let cat_type = match self.age {
+          0..=2 => "kitten",
+          3..=4 => "adult",
+          _ => "old"
+      };
 
+      write!(f, "{} is a cat who is {} years old. and there for {}", self.name, self.age, cat_type)
+  }
 }
 
 fn main() {
-    let my_number = Numbers {
-        number1: 8,
-        number2: 12,
+    let mr_mantle = Cat {
+        name: "Reggie Mantle".to_string(),
+        age: 4,
     };
 
-    take_number(my_number);
-    take_number(my_number);
+    println!("{}", mr_mantle);
 }
+
+
+
